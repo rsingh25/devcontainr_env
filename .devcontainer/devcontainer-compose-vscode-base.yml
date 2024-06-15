@@ -6,9 +6,9 @@ services:
   app:
     container_name: base_dev
     build:
-      context: .
       # dev tools can be installed thru features (in devcontainer.json).
       # For specific tools not availabel thru, update the docker file
+      context: .
       dockerfile: dockerfile-vscode-base
     command: sleep infinity
     environment:
