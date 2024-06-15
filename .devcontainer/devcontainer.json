@@ -1,23 +1,43 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/java-postgres
 {
-	"name": "rest_client",
-	"dockerComposeFile": "./devcontainer-compose-vscode-rest.yml",
+	"name": "base_dev_end",
+	"dockerComposeFile": "./devcontainer-compose-vscode-base.yml",
 	"service": "app",
 	"workspaceFolder": "/dev_env",
-	"features": {
-	},
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {}
-
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {}
+	},
+	"mounts": [
+		{
+			"source": "../..",
+			"target": "/local_repo",
+			"type": "bind"
+		},
+		{
+			"source": "..",
+			"target": "/dev_env",
+			"type": "bind"
+		},
+		{
+			"source": "../../../.aws",
+			"target": "/home/vscode/.aws",
+			"type": "bind"
+		},
+		{
+			"source": "../../../.ssh",
+			"target": "/home/vscode/.ssh",
+			"type": "bind"
+		}
+	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or with the host.
-	"forwardPorts": [5432],
-
+	"forwardPorts": [
+		5432
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
-
+	"postCreateCommand": "find  /local_repo /dev_env -maxdepth 2 -name '.git' -type d -exec bash -c 'git config --global --add safe.directory ${0%/.git}' {} \\;",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
@@ -26,12 +46,12 @@
 			],
 			"settings": {
 				"editor.formatOnSave": true,
-				"editor.renderWhitespace": "all", 
-				"rest-client.logLevel": "info"
+				"editor.renderWhitespace": "all",
+				"rest-client.logLevel": "info",
+				"aws.telemetry": false
 			}
 		}
 	}
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
