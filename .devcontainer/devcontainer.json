@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/java-postgres
 {
-	"name": "dev_env",
-	"dockerComposeFile": "./devcontainer-compose-vscode-java17.yml",
+	"name": "rest_dev",
+	"dockerComposeFile": "./devcontainer-compose-vscode-rest.yml",
 	"service": "app",
 	"workspaceFolder": "/dev_env",
 	"features": {
@@ -26,6 +26,7 @@
 			],
 			"settings": {
 				"editor.formatOnSave": true,
+				"editor.renderWhitespace": "all", 
 				"rest-client.logLevel": "info"
 			}
 		}

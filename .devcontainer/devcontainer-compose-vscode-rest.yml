@@ -7,13 +7,13 @@ services:
     container_name: rest_dev
     build:
       context: .
-      dockerfile: devcontainer-dockerfile  # Add required dev softwares
+      dockerfile: dockerfile-vscode-rest  # Add required dev softwares
     volumes:
       - ../..:/local_repo
       - ..:/dev_env
     command: sleep infinity
     environment:
-      - ENV1=blah                   # environment variables here
+      - ENV_VAR1=blah                   # environment variables here
     env_file:
       - path: ./devcontainer.env    # Add all secrets here. This file is not part of git
         required: false

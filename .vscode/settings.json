@@ -13,5 +13,6 @@
             "commonToken": "common-data",
             "envToken": "dev-token"
         }
-    }
+    },
+    "editor.renderWhitespace": "all"
 }
