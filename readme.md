@@ -1,3 +1,13 @@
+## How to make change 
+
+For all files except .devcontainer/devcontainer.json, (main does not have .devcontainer/devcontainer.json)
+    - Change files in main branch
+    - rebase other branches using
+```
+``` 
+
+For .devcontainer/devcontainer.json, change in the environment specific branch. Do not merge to main.
+
 ## Pre-requisite
 
 ### VS Code
