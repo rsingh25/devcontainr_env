@@ -4,7 +4,7 @@ name: dev-env-vscode-rest
 
 services:
   app:
-    container_name: app
+    container_name: rest_dev
     build:
       context: .
       dockerfile: devcontainer-dockerfile  # Add required dev softwares

@@ -1,16 +1,18 @@
 ## Pre-requisite
 
+### VS Code
 Install "Remote Development" extenstion from microsoft
 
-# Basic instructions
+### Intellij
+Windows Dev containers are not supported
+refer https://www.jetbrains.com/help/idea/prerequisites-for-dev-containers.html#limitations
+
+## Basic instructions
 
 - Checkout appropriate environment branch
 ```
 ## For testing using vs-code rest client
 git checkout dev-env-vscode-rest
-
-## For inteliij java17
-git checkout dev-env-intelij-java17
 
 ## For vscode java17
 git checkout dev-env-vscode-java17
@@ -46,16 +48,20 @@ These variables are set as env variable at devcontainer boot.
 
 #### General Environment Variables:
 
-General environement variables can be configured at multiple places 
-    - .vscode/settings.json
+General environement variables 
     - .devcontainer/devcontainer-compose.yml (services.app.environment)
 
 
-#### File level variables:
+### Http Client vscode plugin 
 
-in .http file, use the below syntax
+#### Environment specific variables 
+
+    - .vscode/settings.json
+
+#### File level variables for http reqeusts (*.http files):
+
+use the below syntax in .http files
 
 ```
  @fileLevelVariable = "blah blah"
 ```
-

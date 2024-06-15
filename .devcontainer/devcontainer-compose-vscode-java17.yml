@@ -1,0 +1,51 @@
+version: "3.8"
+
+name: dev-env-vscode-java17
+
+volumes:
+  dev-env-vscode-java17-postgres-data:
+
+services:
+  app:
+    container_name: java17_dev
+    build: 
+      context: .
+      dockerfile: dockerfile-vscode-java17  # Add required dev softwares
+    environment:  # environment variables here
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_DB: postgres
+        POSTGRES_HOSTNAME: postgresdb
+
+    volumes:
+      - ../..:/local_repo
+      - ..:/dev_env
+      
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    network_mode: service:db
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+    env_file:
+      - path: ./devcontainer.env    # Add all secrets here. This file is not part of git
+        required: false
+
+  db:
+    container_name: postgresdb
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - dev-env-vscode-java17-postgres-data:/var/lib/postgresql/data
+    environment:
+      # NOTE: POSTGRES_DB/USER/PASSWORD should match values in app container
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
+    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
