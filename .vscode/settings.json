@@ -1,0 +1,17 @@
+{
+    "rest-client.environmentVariables": {
+        "dev": {
+            "envToken": "dev-token"
+        },
+        "qa": {
+            "envToken": "qa-token"
+        },
+        "uat": {
+            "envToken": "uat-token"
+        },
+        "$shared": {
+            "commonToken": "common-data",
+            "envToken": "dev-token"
+        }
+    }
+}
