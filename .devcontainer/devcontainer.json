@@ -7,17 +7,18 @@
 	"workspaceFolder": "/dev_env",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// install java, spring boot
+	// install java, docker in docker (for test containers)
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
 			"version": "17",
 			"installMaven": false,
 			"mavenVersion": false
 		}
+//		,"ghcr.io/devcontainers/features/docker-in-docker:2": {}
 	},
 	"mounts": [
 		{
-			"source": "../..", "target": "/local_repo", "type": "bind"
+			"source": "../..", "target": "/repo", "type": "bind"
 		},
 		{ 
 			"source": "..", "target": "/dev_env", "type": "bind"
@@ -38,7 +39,7 @@
 	"forwardPorts": [5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "find  /local_repo /dev_env -maxdepth 2 -name '.git' -type d -exec bash -c 'git config --global --add safe.directory ${0%/.git}' {} \\;",
+	"postCreateCommand": "find  /repo /dev_env -maxdepth 2 -name '.git' -type d -exec bash -c 'git config --global --add safe.directory ${0%/.git}' {} \\;",
 
 	// Configure tool-specific properties.
 	"customizations": {
