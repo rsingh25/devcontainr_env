@@ -12,7 +12,7 @@
 	"mounts": [
 		{
 			"source": "../..",
-			"target": "/local_repo",
+			"target": "/repo",
 			"type": "bind"
 		},
 		{
@@ -34,10 +34,9 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or with the host.
 	"forwardPorts": [
-		5432
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "find  /local_repo /dev_env -maxdepth 2 -name '.git' -type d -exec bash -c 'git config --global --add safe.directory ${0%/.git}' {} \\;",
+	"postCreateCommand": "find  /repo /dev_env -maxdepth 2 -name '.git' -type d -exec bash -c 'git config --global --add safe.directory ${0%/.git}' {} \\;",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
