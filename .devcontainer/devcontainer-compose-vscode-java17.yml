@@ -10,16 +10,12 @@ services:
     container_name: java17_dev
     build: 
       context: .
-      dockerfile: dockerfile-vscode-java17  # Add required dev softwares
+      dockerfile: dockerfile-vscode-java17  # Add unsupported or specific version features here.
     environment:  # environment variables here
         POSTGRES_PASSWORD: postgres
         POSTGRES_USER: postgres
         POSTGRES_DB: postgres
         POSTGRES_HOSTNAME: postgresdb
-
-    volumes:
-      - ../..:/local_repo
-      - ..:/dev_env
       
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
