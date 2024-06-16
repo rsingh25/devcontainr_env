@@ -20,13 +20,13 @@
 			"source": "..", "target": "/dev_env", "type": "bind"
 		},
 		{
-			"source": "../../../.aws", "target": "/home/vscode/.aws", "type": "bind"
+			"source": "../../../.aws", "target": "/home/node/.aws", "type": "bind"
 		},
 		{
-			"source": "../../../.ssh", "target": "/home/vscode/.ssh", "type": "bind"
+			"source": "../../../.ssh", "target": "/home/node/.ssh", "type": "bind"
 		},
 		{
-			"source": "../../../.m2", "target": "/home/vscode/.m2", "type": "bind"
+			"source": "../../../.m2", "target": "/home/node/.m2", "type": "bind"
 		}
 	],
 
