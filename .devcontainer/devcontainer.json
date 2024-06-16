@@ -1,0 +1,57 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java-postgres
+{
+	"name": "mean_env",
+	"dockerComposeFile": "./devcontainer-compose-vscode-mean.yml",
+	"service": "app",
+	"workspaceFolder": "/dev_env",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// install angular-cli, mongosh
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/angular-cli:2": {}, 
+		"ghcr.io/devcontainers-contrib/features/mongosh-homebrew:1": {}
+	},
+	"mounts": [
+		{
+			"source": "../..", "target": "/repo", "type": "bind"
+		},
+		{ 
+			"source": "..", "target": "/dev_env", "type": "bind"
+		},
+		{
+			"source": "../../../.aws", "target": "/home/vscode/.aws", "type": "bind"
+		},
+		{
+			"source": "../../../.ssh", "target": "/home/vscode/.ssh", "type": "bind"
+		},
+		{
+			"source": "../../../.m2", "target": "/home/vscode/.m2", "type": "bind"
+		}
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or with the host.
+	"forwardPorts": [27017],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "find  /repo /dev_env -maxdepth 2 -name '.git' -type d -exec bash -c 'git config --global --add safe.directory ${0%/.git}' {} \\;",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"humao.rest-client",
+				"angular.ng-template"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"editor.renderWhitespace": "all",
+				"rest-client.logLevel": "info"
+			}
+		}
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
